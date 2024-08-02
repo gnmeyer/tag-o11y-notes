@@ -55,9 +55,9 @@ We can see its a bit faster, but not by much. However theres a problem. In Grafa
 
 ![labels](loki-no-labels.png)
 
-I hypothesize that the labels are stored in-memory and thus we need to query the ingestors. Based on the performance of querying the ingestors, I believe we should go back to a `Deployment` opposed to a `Stateful Set` for three reasons:
+I hypothesize that Grafana needs something stored in-memory and thus we need to query the ingestors. Based on the performance of querying the ingestors, I believe we should go back to a `Deployment` opposed to a `Stateful Set` for three reasons:
 1. The PVC's data isnt used in the essential query
-2. We have to run the **seed job** <i>manually</i> at the start of every day.
+2. We have to run the **seed job** <i>manually</i> at the start of every day, and it is easier to reset deployments than stateful sets with PVCs
 3. Attaching the seed job to the deployment reduces toil.
 
 
